@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CognitiveUX – Frontend Assignment</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-logo">CognitiveUX Assignment</div>
+  <div class="nav-links">
+    <a href="#task1" class="active">Task 1 – Privileges</a>
+    <a href="#task2">Task 2 – Video Chapters</a>
+    <a href="#task3">Task 3 – Lead Form</a>
+  </div>
+</nav>
+
+<!-- =========================================================
+     TASK 1 — Exclusive Privileges (ICICI MultiCards NoFee)
+========================================================= -->
+<section class="section-block" id="task1">
+  <div class="container">
+    <h2 class="section-title">Exclusive Privileges</h2>
+
+    <div class="cflow-stage">
+      <!-- Prev arrow -->
+      <button class="cflow-arrow prev" id="cfPrev" aria-label="Previous">&#8249;</button>
+
+      <!-- 3D carousel track -->
+      <div class="cflow-track" id="cfTrack">
+        <!-- Slide 1: ixigo Activation Voucher -->
+        <div class="cflow-slide" data-index="0">
+          <span class="slide-pre">Get</span>
+          <h3>Activation Voucher</h3>
+          <span class="slide-sub">with<br>Flat ₹1,200/- off.</span>
+          <span class="logo-pill logo-ixigo">ixigo</span>
+        </div>
+        <!-- Slide 2: Reliance Digital Activation Voucher -->
+        <div class="cflow-slide" data-index="1">
+          <span class="slide-pre">Get</span>
+          <h3>Activation Voucher</h3>
+          <span class="slide-sub">with up to<br>₹1,500/- off*.</span>
+          <span class="logo-pill logo-reliance">Reliance<strong>digital</strong></span>
+        </div>
+        <!-- Slide 3: BookMyShow (active) -->
+        <div class="cflow-slide" data-index="2">
+          <h3>Enjoy Benefits</h3>
+          <span class="slide-sub">worth up to<br>₹500/- off*<br>on your tickets.</span>
+          <span class="logo-pill logo-bms">▶ BookMyShow</span>
+          <span class="slide-note">*available on selected cards</span>
+        </div>
+        <!-- Slide 4: Apple Offer -->
+        <div class="cflow-slide" data-index="3">
+          <span class="slide-pre">Avail</span>
+          <h3>Apple Offer</h3>
+          <span class="slide-sub">with up to<br>₹7,000/- off</span>
+          <span class="logo-pill logo-apple"> Apple</span>
+        </div>
+      </div>
+
+      <!-- Next arrow -->
+      <button class="cflow-arrow next" id="cfNext" aria-label="Next">&#8250;</button>
+    </div>
+
+    <!-- Dot indicators -->
+    <div class="cflow-dots" id="cfDots"></div>
+
+    <div class="priv-cta" style="margin-top:32px;">
+      <button class="btn-orange" onclick="alert('Apply page would open here')">Apply Now – No Annual Fee</button>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     TASK 2 — Video Carousel with Chapters
+========================================================= -->
+<section class="section-block" id="task2">
+  <div class="container">
+    <p class="section-label" style="color:#555;">Task 2</p>
+    <h2 class="section-title">Video Chapters</h2>
+
+    <div class="carousel-wrapper">
+      <!-- Active player + chapters -->
+      <div class="video-player-area">
+        <div class="video-frame-wrap">
+         <iframe
+    id="mainPlayer"
+    src="https://www.youtube.com/embed/RJTCAL1DRro?enablejsapi=1"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+</iframe>
+        </div>
+
+        <!-- Chapters sidebar -->
+        <div class="chapters-panel" id="chaptersPanel">
+          <h4>📑 Chapters</h4>
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+      <!-- Thumbnail strip -->
+      <div class="video-nav">
+    <button id="videoPrev" class="video-arrow">❮</button>
+
+    <div class="carousel-strip-wrapper">
+        <div class="carousel-strip" id="carouselStrip"></div>
+    </div>
+
+    <button id="videoNext" class="video-arrow">❯</button>
+</div>
+
+    <!-- Auto-chapter generator -->
+    <div class="auto-chapter-box">
+      <h3>🤖 Auto Chapter Generator</h3>
+      <p>Paste any YouTube URL to automatically detect key segments and generate chapter timestamps.</p>
+      <div class="url-input-row">
+        <input type="url" id="ytUrlInput" placeholder="https://www.youtube.com/watch?v=..." />
+        <button class="btn-primary" id="genChaptersBtn" onclick="generateChapters()">Generate Chapters</button>
+      </div>
+      <div class="loader" id="chapLoader"></div>
+      <div class="chapter-result" id="chapterResult">
+        <div class="chapter-result-header">
+          <h4>Generated Chapters</h4>
+          <button class="copy-btn" onclick="copyChapters()">Copy</button>
+        </div>
+        <pre class="chapter-code" id="chapterCode"></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- =========================================================
+     TASK 3 — Lead Form on Video
+========================================================= -->
+<section class="section-block" id="task3">
+  <div class="container">
+    <p class="section-label">Task 3</p>
+    <h2 class="section-title">Lead Capture on Video</h2>
+    <p style="text-align:center;color:#666;font-size:14px;margin-top:-24px;margin-bottom:36px;">
+      A lead form appears 6 seconds after playback begins – smooth, non-disruptive, and dismissible.
+    </p>
+
+    <div class="lead-video-wrapper">
+      <div class="lead-video-frame" id="leadVideoFrame">
+        <iframe
+          id="leadPlayer"
+          src="https://www.youtube.com/embed/RJTCAL1DRro?enablejsapi=1"
+          allowfullscreen
+          allow="autoplay; encrypted-media"
+        ></iframe>
+
+        <!-- Timer bar (counts down 6s to form) -->
+        <div class="timer-bar-wrap">
+          <div class="timer-bar" id="timerBar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <!-- Overlay form -->
+      <div class="lead-overlay" id="leadOverlay">
+        <div class="lead-form-card" id="leadFormCard">
+          <button class="lead-close" id="leadClose" onclick="closeLead()">×</button>
+
+          <!-- Form content -->
+          <div id="leadFormContent">
+            <h3>🎯 Quick Question</h3>
+            <p>You're clearly interested – let us know how we can help you more!</p>
+            <div class="lead-field">
+              <label>Full Name *</label>
+              <input type="text" id="leadName" placeholder="Divyashree J." />
+            </div>
+            <div class="lead-field">
+              <label>Email Address *</label>
+              <input type="email" id="leadEmail" placeholder="you@example.com" />
+            </div>
+            <div class="lead-field">
+              <label>Phone Number</label>
+              <input type="tel" id="leadPhone" placeholder="+91 98765 43210" />
+            </div>
+            <div class="lead-field">
+              <label>I'm interested in</label>
+              <select id="leadInterest">
+                <option value="">-- Select --</option>
+                <option>Credit Card Offers</option>
+                <option>Investment Plans</option>
+                <option>Home Loan</option>
+                <option>Personal Loan</option>
+                <option>Just browsing</option>
+              </select>
+            </div>
+            <button class="lead-submit" onclick="submitLead()">Submit &amp; Continue Watching ▶</button>
+            <p class="lead-timer" id="leadTimerNote"></p>
+          </div>
+
+          <!-- Success state -->
+          <div id="leadSuccessContent" style="display:none;">
+            <div class="lead-success">
+              <div class="checkmark">✅</div>
+              <h3>You're all set!</h3>
+              <p>Thanks for your interest. Our team will be in touch with you shortly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:20px;font-size:13px;color:#888;">
+      ▶ Click play on the video above – the lead form will appear after 6 seconds of watch time.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  Built by <span>Divyashree J.</span> · Frontend Internship Assignment · CognitiveUX.ai
+</footer>
+
+<script src="scripts.js"></script>
+</body>
+</html>
